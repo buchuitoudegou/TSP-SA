@@ -19,11 +19,13 @@ def read_file(path):
 
 
 if __name__ == "__main__":
-  result = read_file('intances/1.txt')
-  solution = read_file('instances/best.txt')
+  result = read_file('instances/1.txt')
+  solution = read_file('instances/best_1.txt')
+  solution = list(map(lambda x: x[0], solution))
+  # print(solution)
   cities = []
   for ele in result:
     cities.append(City(ele[1], ele[2], ele[0]))
-  sa = SA(cities)
+  sa = SA(cities, solution)
   path, distance = sa.SA()
-  print(distance)
+  print(distance, sa.best_distance, (distance - sa.best_distance) / sa.best_distance)
